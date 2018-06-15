@@ -1,0 +1,29 @@
+{
+  "name": "passport-inventory-sync-worker",
+  "version": "1.0.0",
+  "description": "Processes inventory records, combining inventory counts with item property data, and writing it into the web store.",
+  "main": "lambda.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ECHOInternational/passport-inventory-sync-worker.git"
+  },
+  "keywords": [
+    "Passport",
+    "AWS",
+    "SQS",
+    "API",
+    "ECHOcommunity"
+  ],
+  "author": "Nate Flood for ECHO Inc.",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ECHOInternational/passport-inventory-sync-worker/issues"
+  },
+  "homepage": "https://github.com/ECHOInternational/passport-inventory-sync-worker#readme",
+  "dependencies": {
+    "aws-sdk": "^2.258.1"
+  }
+}

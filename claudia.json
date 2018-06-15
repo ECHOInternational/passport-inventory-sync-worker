@@ -1,0 +1,7 @@
+{
+  "lambda": {
+    "role": "passport-inventory-sync-worker-executor",
+    "name": "passport-inventory-sync-worker",
+    "region": "us-east-1"
+  }
+}
