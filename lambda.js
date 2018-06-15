@@ -1,15 +1,15 @@
 var AWS = require("aws-sdk");
 AWS.config.update({region: 'us-east-1'});
 
-var TASK_QUEUE_URL = process.env.TASK_QUEUE_URL;
+const sqs_url = process.env.TASK_QUEUE_URL;
 
-var sqs = new AWS.SQS();
-var s3 = new AWS.S3();
+const sqs = new AWS.SQS();
+const s3 = new AWS.S3();
 
 function deleteMessage(receiptHandle, callback) {
   sqs.deleteMessage({
     ReceiptHandle: receiptHandle,
-    QueueUrl: TASK_QUEUE_URL
+    QueueUrl: sqs_url
   }, callback);
 }
 
