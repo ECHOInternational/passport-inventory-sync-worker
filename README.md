@@ -1,2 +1,2 @@
 # passport-inventory-sync-worker
-Processes inventory records, combining inventory counts with item property data and writing it into the web store.
+Processes inventory records, combining inventory counts with item property data. Writes combined data to separate queues for updating the Plant API and the web store. Once the process is complete an SNS message is sent.

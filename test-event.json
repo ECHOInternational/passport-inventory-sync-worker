@@ -1,0 +1,12 @@
+{
+	"Body": {
+	    "StockItemNumber": "04979",
+	    "ScientificName": "Lablab purpureus",
+	    "Plant": "Lablab",
+	    "Variety": "Brown Sonjo",
+	    "QuantityOnHand": 1,
+	    "QuantityOnHold": null,
+	    "SeedBank": "TANZANIA"
+	},
+	"ReceiptHandle": "fake"
+}

@@ -24,6 +24,8 @@
   },
   "homepage": "https://github.com/ECHOInternational/passport-inventory-sync-worker#readme",
   "dependencies": {
-    "aws-sdk": "^2.258.1"
+    "aws-sdk": "^2.258.1",
+    "request": "^2.87.0",
+    "request-promise-native": "^1.0.5"
   }
 }
