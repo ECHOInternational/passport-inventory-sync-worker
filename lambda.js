@@ -46,8 +46,8 @@ exports.handler = function(event, context, callback) {
 
   records = event.Records;
 
-  inventory_data = Records[0].Body;
-  receipt_handle = Records[0].ReceiptHandle;
+  inventory_data = records[0].body;
+  receipt_handle = records[0].receiptHandle;
 
   console.log(inventory_data);
 
