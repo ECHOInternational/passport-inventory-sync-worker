@@ -42,11 +42,12 @@ function stock_item_url_by_id(id) {
 }
 
 exports.handler = function(event, context, callback) {
-
   lambda_callback = callback;
 
-  inventory_data = event.Body;
-  receipt_handle = event.ReceiptHandle;
+  records = event.Records;
+
+  inventory_data = Records[0].Body;
+  receipt_handle = Records[0].ReceiptHandle;
 
   console.log(inventory_data);
 
