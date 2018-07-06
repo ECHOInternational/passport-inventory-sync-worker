@@ -69,7 +69,7 @@ function find_stock_item(id_string){
         complete_data_collection();
       }
     },
-    lambda_callback(err)
+    lambda_callback
   );
 }
 
