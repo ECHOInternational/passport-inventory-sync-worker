@@ -6,11 +6,12 @@ const sqs = new AWS.SQS();
 const sns = new AWS.SNS();
 
 
-const base_url = 'https://www.echocommunity.org/api/v1/'; //This will come from an environment var
+const base_url = process.env.API_BASE_URL;
 const incoming_queue_url = process.env.TASK_QUEUE_URL;
-const store_queue_url = 'https://sqs.us-east-1.amazonaws.com/382724554857/web_store_updates_to_process';
-const api_queue_url = 'https://sqs.us-east-1.amazonaws.com/382724554857/plant_api_variety_updates_to_process';
-const sns_topic_arn = 'arn:aws:sns:us-east-1:382724554857:plant_variety_data_update';
+const store_queue_url = process.env.STORE_QUEUE_URL;
+const api_queue_url = process.env.API_QUEUE_URL;
+const sns_topic_arn = process.env.SNS_TOPIC_ARN;
+const notify_sns = process.env.NOTIFY_SNS;
 
 
 const headers = {
@@ -139,10 +140,30 @@ function store_api_task(){
 
 function complete_task(){
   if(plant_api_task_complete && store_api_task_complete){
-    sqs.deleteMessage({
+    deleteQueueEntry(receipt_handle, incoming_queue_url, finalize);
+  }
+}
+
+function deleteQueueEntry(receipt_handle, queue_url, callback){
+  sqs.deleteMessage({
       ReceiptHandle: receipt_handle,
-      QueueUrl: incoming_queue_url
-    }, finalize);
+      QueueUrl: queue_url
+  }, function(err, data){
+    if(err){ errors.push([err, data]); }
+    sendSnsMessage("Task Complete", callback);
+  });
+}
+
+function sendSnsMessage(message_body, callback){
+  params = {
+    TopicArn: sns_topic_arn,
+    Message: message_body +": "+ new Date().toLocaleString()
+  };
+  if(notify_sns){
+    console.log("Sending SNS Message");
+    sns.publish(params, callback);
+  }else{
+    callback();
   }
 }
 
