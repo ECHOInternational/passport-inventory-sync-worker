@@ -107,7 +107,7 @@ function complete_data_collection() {
 function plant_api_task(){
   params = {
     DelaySeconds: 0,
-    MessageBody: JSON.stringify(inventory_data),
+    MessageBody: inventory_data,
     QueueUrl: api_queue_url
   };
   sqs.sendMessage(params, function(err, data){
@@ -122,7 +122,7 @@ function store_api_task(){
   if(stock_item_id){
     params = {
       DelaySeconds: 0,
-      MessageBody: JSON.stringify(stock_item_data),
+      MessageBody: stock_item_data,
       QueueUrl: store_queue_url
     };
     sqs.sendMessage(params, function(err, data){
